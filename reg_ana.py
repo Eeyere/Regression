@@ -10,19 +10,19 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import seaborn as sns
-sns.set()
+sns.set() # use to set all matplotlib to seaborn disply setting
 
 
-dt=pd.read_csv('C:\\Users\\user\\Downloads\\Reg_text.csv')
-plt.scatter(dt['SAT'],dt['GPA'])
-plt.xlabel('SAT')
-plt.ylabel('GPA')
+dt=pd.read_csv('C:\\Users\\HP\\Downloads\\real_estate_price_size.csv')
+plt.scatter(dt['price'],dt['size'])
+plt.xlabel('price')
+plt.ylabel('size')
 plt.show()
 
-y = dt['GPA']
-x1 = dt ['SAT']
+y = dt['price']
+x1 = dt ['size']
 
-x=dt['SAT']
+x=dt['price']
 x = sm.add_constant(x1)
 
 
@@ -30,8 +30,8 @@ results = sm.OLS(y,x).fit()
 results.summary()
 
 plt.scatter(x1,y)
-yhat = 0.0017*x1 + 0.275
+yhat = 233.1787*x1 + 1.019e5
 fig = plt.plot(x1,yhat, lw=4, c='orange', label ='regression line')
-plt.xlabel('SAT', fontsize = 20)
-plt.ylabel('GPA', fontsize = 20)
+plt.xlabel('price', fontsize = 20)
+plt.ylabel('size', fontsize = 20)
 plt.show()
