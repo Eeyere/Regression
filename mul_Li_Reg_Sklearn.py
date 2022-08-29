@@ -8,6 +8,7 @@ Created on Thu Aug 25 14:17:47 2022
 import pandas as pd
 import matplotlib.pyplot as pt
 import statsmodels.api as sm
+import numpy as np
 import seaborn as sb
 sb.set()
 
@@ -86,3 +87,19 @@ test_data_scaled=sc.transform(test_data) #data hsa to be transformed before used
 test_predict=reg.predict(test_data_scaled)
 
 #Training and testing splitted data
+from sklearn.model_selection import train_test_split
+
+aa=np.arange(1,101)
+
+bb=np.arange(501,601)
+#splitting an array into randomised parts of defaults 75:25 proportions
+aa_train, aa_test = train_test_split(aa) #Default splitted into 75:25
+
+aa_train1, aa_test1 = train_test_split(aa,test_size=0.2) #splits into 80:20 ratios
+aa_train2, aa_test2 = train_test_split(aa,test_size=0.2,shuffle=False) #turn off randomising the split outcome
+
+aa_train1, aa_test1 = train_test_split(aa,random_state=42) #splits the data with consistency of randomness
+#Consistency of randomness can help use a consistent random split sample to assess a model 
+
+#It is possible to add moore data to be splitted, like splitting aa and bb at the same time
+aa_train1, aa_test1, bb_train, bb_test = train_test_split(aa,bb, test_size=0.2) #splits into 80:20 ratios
