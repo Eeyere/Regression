@@ -58,3 +58,31 @@ Reg_summary=pd.DataFrame(data=x.columns.values, columns=['Features'])
 Reg_summary['Coefficients']=reg.coef_
 Reg_summary['P_values']=p_values.round(4)
 
+#Standardizing variabbles
+from sklearn.preprocessing import StandardScaler
+
+sc=StandardScaler()
+
+sc.fit(x)
+
+x_scaled=sc.transform(x)
+
+#Fitting the model with scaled variables
+reg.fit(x_scaled,y)
+
+#Determining the coefficient and intercepts of the scaled variables
+new_scaled_coef=reg.coef_
+new_scaled_intercept=reg.intercept_
+
+#Preparing the summary table
+reg_data_summary=pd.DataFrame([['intercept'],['SAT'],['Random 1,2,3']], columns=['Features'])
+reg_data_summary['weights']=new_scaled_intercept,new_scaled_coef[0],new_scaled_coef[1]
+
+
+#Predicitng with standardised model
+test_data=pd.DataFrame(data=[[2.700,2],[2.400,1]],columns=['SAT','RANDOM 1,2,3'])
+test_data_scaled=sc.transform(test_data) #data hsa to be transformed before used for testing
+
+test_predict=reg.predict(test_data_scaled)
+
+#Training and testing splitted data
