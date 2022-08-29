@@ -103,3 +103,4 @@ aa_train1, aa_test1 = train_test_split(aa,random_state=42) #splits the data with
 
 #It is possible to add moore data to be splitted, like splitting aa and bb at the same time
 aa_train1, aa_test1, bb_train, bb_test = train_test_split(aa,bb, test_size=0.2) #splits into 80:20 ratios
+
